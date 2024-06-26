@@ -4,21 +4,46 @@
 #include <ctime>
 #include <string>
 
+#include "PersonalBudget.h"
+
 using namespace std;
+
+string getTodayDate();
 
 int main()
 {
-    std::time_t rawtime;
-    std::tm* timeinfo;
-    char buffer [30];
+    PersonalBudget personalBudget("Users.txt");
 
-    std::time(&rawtime);
-    timeinfo = std::localtime(&rawtime);
+    char choice;
+    while(1)
+    {
+        if(personalBudget.getIdLoggedUser()==0)
+        {
+            cout << endl;
+            cout<<"     >>> MENU GLOWNE <<<"<<endl;
+            cout<<"-------------------------------"<<endl;
+            cout << "1. Sign in" << endl;
+            cout << "2. Log in" << endl;
+            cout << "9. Exit" << endl;
+            cout<<"-------------------------------"<<endl;
+            cout<<"Your choice: ";
+            cin >> choice;
 
-    std::strftime(buffer,80,"%Y-%m-%d",timeinfo);
-    string todayDate = buffer;
-
-    cout << todayDate;
+            switch(choice) {
+            case '1':
+                personalBudget.userRegistration();
+                break;
+            case '2':
+                personalBudget.userLogIn();
+                break;
+            case '9':
+                exit(0);
+                break;
+            default:
+                break;
+            }
+        }
+    }
 
 //    CMarkup xml;
 //    bool fileExists = xml.Load("users.xml");
@@ -40,3 +65,35 @@ int main()
 
     return 0;
 }
+
+
+string getTodayDate(){
+    time_t rawtime;
+    tm* timeinfo;
+    char todayDate [30];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(todayDate,30,"%Y%m%d",timeinfo);
+    return todayDate;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
