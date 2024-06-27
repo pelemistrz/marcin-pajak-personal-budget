@@ -2,52 +2,62 @@
 
 using namespace std;
 
-void UserManager::userRegistration(){
-//    string login, password;
-//    cout << endl;
-//    cout << "Please provide login." << endl;
-//    cin >> login;
-//
-//    int i = 0;
-//    int sizeUser = users.size();
-//    while (i < sizeUser)
-//    {
-//        if (users[i].getLogin() == login)
-//        {
-//            cout << "This login exists. Please provide different." << endl;
-//            cin >> login;
-//            i = 0;
-//        }
-//        else
-//        {
-//            i++;
-//        }
-//    }
-//
-//    cout << "Please provide your password." << endl;
-//    cin >> password;
-//
-//    User newUser;
-//    int userId = getIdNewUser();
-//    newUser.setId(userId);
-//    newUser.setLogin(login);
-//    newUser.setPassword(password);
-//
-//    users.push_back(newUser);
-//    cout << "Your account has been created." << endl;
-//
-//    fileWithUsers.addUserToTheFile(newUser);
+void UserManager::userRegistration()
+{
+    string login, password,name,surname;
+    cout << endl;
+    cout << "Please provie name: ";
+    cin >>name;
+    cout << endl << "Please provide your surname: ";
+    cin >> surname;
+    cout <<endl << "Please provide login: ";
+    cin >> login;
+
+    int i = 0;
+    int sizeUser = users.size();
+
+    while (i < sizeUser)
+    {
+        if (users[i].getLogin() == login)
+        {
+            cout << "This login exists. Please provide different." << endl;
+            cin >> login;
+            i = 0;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    cout << endl << "Please provide your password: ";
+    cin >> password;
+
+    User newUser;
+    int userId = getIdNewUser();
+    newUser.setUserId(userId);
+    newUser.setLogin(login);
+    newUser.setPassword(password);
+    newUser.setName(name);
+    newUser.setSurname(surname);
+
+    users.push_back(newUser);
+    cout << endl << "Your account has been created." << endl;
+
+    fileWithUsers.addUserToTheFile(newUser);
 }
 
-int UserManager::getIdNewUser(){
-//    if (users.empty() == true)
-//        return 1;
-//    else
-//        return users.back().getId() + 1;
+int UserManager::getIdNewUser()
+{
+    if (users.empty() == true)
+        return 1;
+    else
+        return users.back().getUserId() + 1;
 }
 
 
-void UserManager::userLogIn(){
+void UserManager::userLogIn()
+{
 
 //    string login, password;
 //    cout << "Please provide your login" << endl;
@@ -78,11 +88,13 @@ void UserManager::userLogIn(){
 //    cout << "There is no user with this login." << endl;
 }
 
-void UserManager::userLogOut(){
+void UserManager::userLogOut()
+{
 //    idLoggedUser = 0;
 }
 
-void UserManager::userChangePassword(){
+void UserManager::userChangePassword()
+{
 //    string newPassword = "";
 //    cout << "Please provide new password"<<endl;
 //    cin >> newPassword;
@@ -94,13 +106,16 @@ void UserManager::userChangePassword(){
 
 }
 
-int UserManager::getIdLoggedUser(){
+int UserManager::getIdLoggedUser()
+{
     return idLoggedUser;
 }
 
-bool UserManager::isLogIn(){
+bool UserManager::isLogIn()
+{
     bool isLogIn = false;
-    if(idLoggedUser !=0 ){
+    if(idLoggedUser !=0 )
+    {
         isLogIn = true;
     }
     return isLogIn;

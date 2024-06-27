@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+<User>
+<UserId>1</UserId>
+<Login>sdaf</Login>
+<Password>adf</Password>
+<Name>Marcin</Name>
+<Surname>m</Surname>
+</User>
+<User>
+<UserId>2</UserId>
+<Login>sdf</Login>
+<Password>asdf</Password>
+<Name>marcin</Name>
+<Surname>pajak</Surname>
+</User>
+<User>
+<UserId>3</UserId>
+<Login>jola</Login>
+<Password>jola</Password>
+<Name>jola</Name>
+<Surname>jola</Surname>
+</User>
+</Users>

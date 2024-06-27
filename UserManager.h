@@ -22,7 +22,7 @@ class UserManager{
 public:
     UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers){
         idLoggedUser = 0;
-        users = this->fileWithUsers.loadUsersFromFile();
+        users = this -> fileWithUsers.loadUsersFromFile();
     };
     void userRegistration();
     void userLogIn();
