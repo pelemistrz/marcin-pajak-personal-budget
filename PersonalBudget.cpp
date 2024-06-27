@@ -20,7 +20,7 @@ void PersonalBudget::userLogOut(){
 }
 
 void PersonalBudget::userChangePassword(){
-    userManager.userChangePassword();
+//    userManager.userChangePassword();
 }
 int PersonalBudget::getIdLoggedUser(){
     return userManager.getIdLoggedUser();

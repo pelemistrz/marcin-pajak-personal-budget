@@ -43,6 +43,57 @@ int main()
                 break;
             }
         }
+
+        if(personalBudget.getIdLoggedUser() !=0)
+        {
+            cout<<endl;
+            cout<<"Welcome in Personal Budget . Please choose one option: " <<endl<<endl;
+            cout<<"1. Add new expense."<<endl;
+            cout<<"2. Add new income."<<endl;
+            cout<<"3. Search by surname."<<endl;
+            cout<<"4. Show all contacts."<<endl;
+            cout<<"5. Delete contact."<<endl;
+            cout<<"6. Edit contact."<<endl;
+            cout<<"7. Change password."<<endl;
+            cout<<"8. Log out."<<endl;
+            cout<<"9. Exit."<<endl;
+
+            cin>>choice;
+
+            switch(choice){
+            case '1':
+//              personalBudget.newContact();
+            break;
+            case '2':
+//               personalBudget.searchByName();
+               break;
+            case '3':
+//               personalBudget.searchBySurname();
+                break;
+            case '4':
+                cout<<endl<<endl<<choice<<endl;
+//                personalBudget.showAllContacts();
+                break;
+            case '5':
+//                personalBudget.deleteContact();
+                break;
+            case '6':
+//               personalBudget.editContact();
+                break;
+            case '7':
+//                personalBudget.userChangePassword();
+                break;
+            case '8':
+//                personalBudget.userLogOut();
+                break;
+            case '9':
+                exit(0);
+                break;
+            default:
+                break;
+            }
+        }
+
     }
     return 0;
 }

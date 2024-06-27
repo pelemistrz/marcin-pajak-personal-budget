@@ -27,7 +27,7 @@ public:
     void userRegistration();
     void userLogIn();
     void userLogOut();
-    void userChangePassword();
+//    void userChangePassword();
     bool isLogIn();
 
     int getIdLoggedUser();
