@@ -18,7 +18,7 @@ class FileWithUsers{
 public:
     FileWithUsers(string nameOfFileWithUsers) : NAME_OF_FILE_WITH_USERS(nameOfFileWithUsers){}
     void addUserToTheFile(User user);
-    void saveAllUsersToTheFile(vector<User> &users);
     vector<User> loadUsersFromFile();
+    void changePaswordGivenUser(int userId, string newPassword);
 };
 #endif

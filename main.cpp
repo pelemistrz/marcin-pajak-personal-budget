@@ -50,9 +50,9 @@ int main()
             cout<<endl;
             cout<<"Welcome in Personal Budget . Please choose one option: " <<endl<<endl;
             cout<<"1. Add new income."<<endl;
-            cout<<"2. Add new expense0."<<endl;
-            cout<<"3. Search by surname."<<endl;
-            cout<<"4. Show all contacts."<<endl;
+            cout<<"2. Add new expense."<<endl;
+            cout<<"3. Show balance current month."<<endl;
+            cout<<"4. giberish"<<endl;
             cout<<"5. Delete contact."<<endl;
             cout<<"6. Edit contact."<<endl;
             cout<<"7. Change password."<<endl;
@@ -69,7 +69,7 @@ int main()
                personalBudget.addExpense();
                break;
             case '3':
-//               personalBudget.searchBySurname();
+               personalBudget.showBalanceCurrentMonth();
                 break;
             case '4':
 //                personalBudget.showAllContacts();
@@ -81,7 +81,7 @@ int main()
 //               personalBudget.editContact();
                 break;
             case '7':
-//                personalBudget.userChangePassword();
+                personalBudget.userChangePassword();
                 break;
             case '8':
                personalBudget.userLogOut();
@@ -93,23 +93,28 @@ int main()
                 break;
             }
         }
-
     }
     return 0;
 }
 
-
-
-
-
-
-int mains(){
-    string name;
-    cout<< "podaj cos"<<endl;
-    getline(cin,name,'\n');
-    cout<< name;
-    return 0;
-}
+//string getTodayDate(){
+//    time_t rawtime;
+//    tm* timeinfo;
+//    char todayDate [30];
+//
+//    time(&rawtime);
+//    timeinfo = localtime(&rawtime);
+//
+//    strftime(todayDate,30,"%Y%m%d",timeinfo);
+//    return todayDate;
+//}
+//
+//
+// int main(){
+//    string currentMonth = getTodayDate().substr(0,6);
+//     cout<<currentMonth;
+//    return 0;
+//}
 
 
 

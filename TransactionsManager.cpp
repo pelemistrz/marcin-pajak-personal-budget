@@ -47,6 +47,53 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     system("cls");
     }
 
+void TransactionsManager::showBalanceCurrentMonth(){
+   sort(incomes.begin(),incomes.end(),[]( Transaction &l, Transaction &r){
+         return l.getDate() < r.getDate();
+        } );
+    sort(expenses.begin(),expenses.end(),[]( Transaction &l, Transaction &r){
+         return l.getDate() < r.getDate();
+        } );
+
+    string currentMonth = getTodayDate().substr(0,6);
+
+
+    int Lp = 1;
+    double sumOfIncomes = 0;
+    cout<<endl<<"------INCOMES--------"<<endl;
+    cout<< string("Lp.") + " Date " + " Description " + " Amount "<<endl;
+
+    for(Transaction income : incomes){
+       if(income.getDate().rfind(currentMonth,0) == 0){
+            sumOfIncomes += income.getAmount();
+             cout<< Lp<< ". "+ income.getDate()+" "+  " - "+income.getItem()+"    "<<income.getAmount()<<endl;
+             Lp++;
+        }
+    }
+
+    double sumOfExpenses = 0;
+    cout<<endl<<"------EXPENSES--------"<<endl;
+    cout<< string("Lp.") + " Date " + " Description " + " Amount "<<endl;
+    Lp = 1;
+    for(Transaction expense : expenses){
+       if(expense.getDate().rfind(currentMonth,0) == 0){
+            sumOfExpenses += expense.getAmount();
+             cout<< Lp<< ". "+ expense.getDate()+" "+  " - "+expense.getItem()+"    "<<expense.getAmount()<<endl;
+             Lp++;
+        }
+    }
+    cout<<endl;
+    cout<< "Sum of incomes equal: " <<sumOfIncomes<<endl;
+    cout<< "Sum of expenses equal: " << sumOfExpenses<<endl;
+    cout<< "Saldo equal: " <<(sumOfIncomes-sumOfExpenses)<<endl<<endl;
+
+    system("pause");
+    system("cls");
+
+
+}
+
+
 
 
 

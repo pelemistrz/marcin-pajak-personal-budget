@@ -20,7 +20,7 @@ void PersonalBudget::userLogOut(){
 }
 
 void PersonalBudget::userChangePassword(){
-//    userManager.userChangePassword();
+    userManager.userChangePassword();
 }
 int PersonalBudget::getIdLoggedUser(){
     return userManager.getIdLoggedUser();
@@ -32,4 +32,8 @@ void PersonalBudget::addIncome(){
 
 void PersonalBudget::addExpense(){
     transactionsManager->addExpense();
+}
+
+void PersonalBudget::showBalanceCurrentMonth(){
+    transactionsManager->showBalanceCurrentMonth();
 }

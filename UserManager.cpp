@@ -93,18 +93,18 @@ void UserManager::userLogOut()
     idLoggedUser = 0;
 }
 
-//void UserManager::userChangePassword()
-//{
-//    string newPassword = "";
-//    cout << "Please provide new password"<<endl;
-//    cin >> newPassword;
-//
-//    users[idLoggedUser-1].setPassword(newPassword);
-//    cout << "You password has been changed"<<endl;
-//
-//    fileWithUsers.saveAllUsersToTheFile(users);
-//
-//}
+void UserManager::userChangePassword()
+{
+    string newPassword = "";
+    cout << "Please provide new password"<<endl;
+    cin >> newPassword;
+
+    users[idLoggedUser-1].setPassword(newPassword);
+    cout << "You password has been changed"<<endl;
+
+    fileWithUsers.changePaswordGivenUser(idLoggedUser,newPassword);
+
+}
 
 int UserManager::getIdLoggedUser()
 {

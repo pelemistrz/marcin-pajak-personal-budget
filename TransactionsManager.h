@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
 
 #include "FileWithTransactions.h"
 #include "Transaction.h"
@@ -19,13 +20,10 @@ class TransactionsManager{
     vector<Transaction> incomes;
     vector<Transaction> expenses;
 
-
     FileWithTransactions fileWithIncomes;
     FileWithTransactions fileWithExpenses;
 
     string getTodayDate();
-
- //   void showContact(int whichContact);
     void addTransaction(FileWithTransactions whichFileToSave, string wichTransactions);
 
 public:
@@ -39,6 +37,7 @@ public:
 
      void addIncome();
      void addExpense();
+     void showBalanceCurrentMonth();
 
 
 
