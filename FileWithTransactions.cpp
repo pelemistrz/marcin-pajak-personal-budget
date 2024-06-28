@@ -30,7 +30,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
             transaction.setItem(item);
             xml.FindElem("Amount");
             //sprawdzic jak sie wyciaga double z cmarkup
-            double amount = atoi(MCD_2PCSZ(xml.GetData()));
+            double amount = stod(MCD_2PCSZ(xml.GetData()));
             transaction.setAmount(amount);
             transactions.push_back(transaction);
             xml.OutOfElem();
@@ -43,6 +43,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
 void FileWithTransactions::addTransactionToTheFile(Transaction transaction) {
     CMarkup xml;
     bool fileExists = xml.Load(NAME_OF_THE_FILE);
+    string amount;
 
     if(!fileExists){
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -56,6 +57,7 @@ void FileWithTransactions::addTransactionToTheFile(Transaction transaction) {
     xml.AddElem("IdUserWhoCreatedTransaction", transaction.getIdUserWhoCreatedTransaction());
     xml.AddElem("Date", transaction.getDate());
     xml.AddElem("Item", transaction.getItem());
-    xml.AddElem("Amount",transaction.getAmount());
+    amount = to_string(transaction.getAmount());
+    xml.AddElem("Amount",amount);
     xml.Save(NAME_OF_THE_FILE);
 }

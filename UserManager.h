@@ -20,8 +20,8 @@ class UserManager{
     int getIdNewUser();
 
 public:
-    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers){
-        idLoggedUser = 0;
+    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers) {
+
         users = this -> fileWithUsers.loadUsersFromFile();
     };
     void userRegistration();

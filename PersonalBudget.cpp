@@ -7,16 +7,16 @@ void PersonalBudget::userRegistration(){
 
 void PersonalBudget::userLogIn(){
       userManager.userLogIn();
-//      if(userManager.isLogIn()){
-//        contactManager = new ContactManager(NAME_OF_FILE_WITH_CONTACTS, userManager.getIdLoggedUser());
-//      }
+      if(userManager.isLogIn()){
+        transactionsManager = new TransactionsManager(NAME_OF_FILE_WITH_INCOMES,NAME_OF_FILE_WITH_EXPENSES, userManager.getIdLoggedUser());
+     }
 
 }
 
 void PersonalBudget::userLogOut(){
     userManager.userLogOut();
-//    delete contactManager;
-//    contactManager = NULL;
+    delete transactionsManager;
+    transactionsManager = NULL;
 }
 
 void PersonalBudget::userChangePassword(){
@@ -24,4 +24,12 @@ void PersonalBudget::userChangePassword(){
 }
 int PersonalBudget::getIdLoggedUser(){
     return userManager.getIdLoggedUser();
+}
+
+void PersonalBudget::addIncome(){
+    transactionsManager->addIncome();
+}
+
+void PersonalBudget::addExpense(){
+    transactionsManager->addExpense();
 }
