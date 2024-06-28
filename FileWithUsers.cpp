@@ -33,11 +33,9 @@ vector<User> FileWithUsers::loadUsersFromFile(){
             xml.IntoElem();
             xml.FindElem("UserId");
             int userId = atoi(MCD_2PCSZ(xml.GetData()));
-            cout <<userId;
             user.setUserId(userId);
             xml.FindElem("Login");
             string login = xml.GetData();
-            cout <<login;
             user.setLogin(login);
             xml.FindElem("Password");
             string password = xml.GetData();
@@ -54,8 +52,6 @@ vector<User> FileWithUsers::loadUsersFromFile(){
         }
 
     }
-
-    cout <<users[0].getName();
     return users;
 
 }

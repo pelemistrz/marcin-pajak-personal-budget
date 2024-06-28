@@ -5,6 +5,8 @@
 #include <string>
 
 #include "PersonalBudget.h"
+#include "FileWithTransactions.h"
+
 
 using namespace std;
 
@@ -113,7 +115,15 @@ string getTodayDate(){
 
 
 
-
+int mains(){
+    FileWithTransactions fileWithTransactions("Expenses.xml");
+   // Transaction transcaction(1,1,"20240615","Food",15.0);
+   // fileWithTransactions.addTransactionToTheFile(transcaction);
+    vector<Transaction> t;
+    t = fileWithTransactions.loadTransactionsFromFile(1);
+    cout << t[0].getDate();
+    return 0;
+}
 
 
 

@@ -16,15 +16,13 @@ class Transaction{
 
 
 public:
-//    Transaction(int id = 0,int idUserWhoCreatedContact = 0,string name = "",string surname = "",string email = "",string address = "",   string phone = ""){
-//        this->id = id;
-//        this->idUserWhoCreatedContact = idUserWhoCreatedContact;
-//        this->name = name;
-//        this->surname = surname;
-//        this->email = email;
-//        this->address = address;
-//        this->phone = phone;
-//    }
+    Transaction(int transactionId = 0,int idUserWhoCreatedTransaction = 0,string date = "",string item = "",   double amount = 0.0){
+        this->transactionId = transactionId;
+        this->idUserWhoCreatedTransaction = idUserWhoCreatedTransaction;
+        this->date = date;
+        this->item = item;
+        this->amount = 0.0;
+        }
 
     void setTransactonId(int transactionId);
     void setIdUserWhoCreatedTransaction(int idUserWhoCreatedTransaction);
