@@ -8,6 +8,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <algorithm>
+#include <iomanip>
 
 #include "FileWithTransactions.h"
 #include "Transaction.h"
@@ -25,6 +26,7 @@ class TransactionsManager{
 
     string getTodayDate();
     void addTransaction(FileWithTransactions whichFileToSave, string wichTransactions);
+    void showBalance(string date);
 
 public:
      TransactionsManager(string nameOfFileWithIncomes,string nameOfFileWithExpenses, int idLoggedUser) : fileWithIncomes(nameOfFileWithIncomes), fileWithExpenses(nameOfFileWithExpenses) ,ID_LOGGED_USER(idLoggedUser){
@@ -38,6 +40,7 @@ public:
      void addIncome();
      void addExpense();
      void showBalanceCurrentMonth();
+     void showBalancePreviousMonth();
 
 
 

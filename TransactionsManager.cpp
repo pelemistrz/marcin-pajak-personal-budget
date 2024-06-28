@@ -19,7 +19,7 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     if(date=="1"){
         date = getTodayDate();
     } else {
-        date = "20011111";
+        date = "2001-11-11";
     }
 
     cout <<"Please enter description of the " + whichTransaction +": ";
@@ -30,7 +30,6 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
 
     doubleAmount = stod(amount);
     cout<<endl<<doubleAmount;
-
 
     Transaction transaction;
     transaction.setTransactonId(2);
@@ -47,7 +46,19 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     system("cls");
     }
 
+
 void TransactionsManager::showBalanceCurrentMonth(){
+     string currentMonth =  getTodayDate().substr(0,7);
+     showBalance(currentMonth);
+}
+void TransactionsManager::showBalancePreviousMonth(){
+
+
+
+}
+
+
+void TransactionsManager::showBalance(string givenMonth){
    sort(incomes.begin(),incomes.end(),[]( Transaction &l, Transaction &r){
          return l.getDate() < r.getDate();
         } );
@@ -55,37 +66,35 @@ void TransactionsManager::showBalanceCurrentMonth(){
          return l.getDate() < r.getDate();
         } );
 
-    string currentMonth = getTodayDate().substr(0,6);
-
-
     int Lp = 1;
     double sumOfIncomes = 0;
     cout<<endl<<"------INCOMES--------"<<endl;
-    cout<< string("Lp.") + " Date " + " Description " + " Amount "<<endl;
+    cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
 
     for(Transaction income : incomes){
-       if(income.getDate().rfind(currentMonth,0) == 0){
+       if(income.getDate().rfind(givenMonth,0) == 0){
             sumOfIncomes += income.getAmount();
-             cout<< Lp<< ". "+ income.getDate()+" "+  " - "+income.getItem()+"    "<<income.getAmount()<<endl;
+            cout<<setw(5)<<left<< Lp<<setw(12)<<left<< income.getDate()<<setw(20)<<left<<income.getItem()<<setw(8)<<left<<income.getAmount()<<endl;
              Lp++;
         }
     }
 
     double sumOfExpenses = 0;
     cout<<endl<<"------EXPENSES--------"<<endl;
-    cout<< string("Lp.") + " Date " + " Description " + " Amount "<<endl;
+     cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
     Lp = 1;
     for(Transaction expense : expenses){
-       if(expense.getDate().rfind(currentMonth,0) == 0){
+       if(expense.getDate().rfind(givenMonth,0) == 0){
             sumOfExpenses += expense.getAmount();
-             cout<< Lp<< ". "+ expense.getDate()+" "+  " - "+expense.getItem()+"    "<<expense.getAmount()<<endl;
-             Lp++;
+            cout<<setw(5)<<left<< Lp<<setw(12)<<left<< expense.getDate()<<setw(20)<<left<<expense.getItem()<<setw(8)<<left<<expense.getAmount()<<endl;
+            Lp++;
         }
     }
-    cout<<endl;
-    cout<< "Sum of incomes equal: " <<sumOfIncomes<<endl;
-    cout<< "Sum of expenses equal: " << sumOfExpenses<<endl;
-    cout<< "Saldo equal: " <<(sumOfIncomes-sumOfExpenses)<<endl<<endl;
+    cout<<endl<<"--------------------------------"<<endl;
+    cout<< setw(37)<<left<<"Sum of incomes: " <<sumOfIncomes<<endl;
+    cout<< setw(37)<<left<< "Sum of expenses: " << sumOfExpenses<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<< setw(37)<<left<<"Saldo equal: " <<(sumOfIncomes-sumOfExpenses)<<endl<<endl;
 
     system("pause");
     system("cls");
@@ -105,6 +114,6 @@ string TransactionsManager::getTodayDate(){
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
-    strftime(todayDate,30,"%Y%m%d",timeinfo);
+    strftime(todayDate,30,"%Y-%m-%d",timeinfo);
     return todayDate;
 }

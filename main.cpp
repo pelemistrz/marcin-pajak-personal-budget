@@ -72,7 +72,7 @@ int main()
                personalBudget.showBalanceCurrentMonth();
                 break;
             case '4':
-//                personalBudget.showAllContacts();
+                personalBudget.showBalancePreviousMonth();
                 break;
             case '5':
 //                personalBudget.deleteContact();
@@ -97,24 +97,29 @@ int main()
     return 0;
 }
 
-//string getTodayDate(){
-//    time_t rawtime;
-//    tm* timeinfo;
-//    char todayDate [30];
-//
-//    time(&rawtime);
-//    timeinfo = localtime(&rawtime);
-//
-//    strftime(todayDate,30,"%Y%m%d",timeinfo);
-//    return todayDate;
-//}
-//
-//
-// int main(){
-//    string currentMonth = getTodayDate().substr(0,6);
-//     cout<<currentMonth;
-//    return 0;
-//}
+string getTodayDate(){
+    time_t rawtime;
+    tm* timeinfo;
+    char todayDate [30];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(todayDate,30,"%Y%m%d",timeinfo);
+    return todayDate;
+}
+
+string getPreviousMonth(){
+
+
+}
+
+
+ int mains(){
+    string currentMonth = getTodayDate().substr(0,6);
+     cout<<currentMonth;
+    return 0;
+}
 
 
 

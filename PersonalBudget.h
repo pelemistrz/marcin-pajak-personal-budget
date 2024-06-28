@@ -21,6 +21,7 @@ public:
     void addIncome();
     void addExpense();
     void showBalanceCurrentMonth();
+    void showBalancePreviousMonth();
 
     void userRegistration();
     void userLogIn();
