@@ -22,6 +22,7 @@ public:
     void addExpense();
     void showBalanceCurrentMonth();
     void showBalancePreviousMonth();
+    void showBalanceInGivenPeriod();
 
     void userRegistration();
     void userLogIn();

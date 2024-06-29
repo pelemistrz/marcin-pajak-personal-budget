@@ -2,6 +2,9 @@
 #define FILE_WITH_TRANSACTIONS_H
 
 #include <vector>
+#include <stdlib.h>
+#include <cstdlib>
+#include <string>
 #include "Markup.h"
 
 #include "Transaction.h"

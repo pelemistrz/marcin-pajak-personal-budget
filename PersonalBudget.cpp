@@ -41,3 +41,7 @@ void PersonalBudget::showBalanceCurrentMonth(){
 void PersonalBudget::showBalancePreviousMonth(){
     transactionsManager-> showBalancePreviousMonth();
 }
+
+void PersonalBudget::showBalanceInGivenPeriod(){
+    transactionsManager->showBalanceInGivenPeriod();
+}

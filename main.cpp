@@ -74,10 +74,7 @@ int main()
                 personalBudget.showBalancePreviousMonth();
                 break;
             case '5':
-//                personalBudget.deleteContact();
-                break;
-            case '6':
-//               personalBudget.editContact();
+                personalBudget.showBalanceInGivenPeriod();
                 break;
             case '7':
                 personalBudget.userChangePassword();
@@ -96,14 +93,6 @@ int main()
     return 0;
 }
 
- int mains(){
-     string date = "2021-04-03";
-    int year = stoi(date.substr(0,4));
-    int month = stoi(date.substr(5,2));
-    int day = stoi(date.substr(8,2));
-    cout<<year<<endl<<month<<endl<<day;
-    return 0;
-}
 
 
 

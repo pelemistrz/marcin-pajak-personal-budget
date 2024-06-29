@@ -70,6 +70,95 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     system("cls");
     }
 
+void TransactionsManager::showBalanceInGivenPeriod(){
+    string firstDate;
+    string secondDate;
+
+    cout<<"Please provide first date in format \"yyyy-mm-dd\": ";
+    cin >> firstDate;
+    if(!checkDate(firstDate)){
+        cout<<endl<<"Try again."<<endl;
+        return;
+    }
+    cout<<"Please provide second date later than first in format \"yyyy-mm-dd\": ";
+    cin>>secondDate;
+    if(!checkDate(secondDate)){
+        cout<<endl<<"Try again."<<endl;
+        return;
+    }
+    if(firstDate > secondDate){
+        cout<<endl<< "The second date should by later than first. Try again"<<endl;
+        return;
+    }
+    sort(incomes.begin(),incomes.end(),[]( Transaction &l, Transaction &r){
+         return l.getDate() < r.getDate();
+        } );
+    sort(expenses.begin(),expenses.end(),[]( Transaction &l, Transaction &r){
+         return l.getDate() < r.getDate();
+        } );
+
+    int incomesSize = incomes.size();
+    int lowerBoundIncomes = 0;
+    int upperBoundIncomes = 0;
+    for(int i=0; i<incomesSize;i++){
+        if(incomes[i].getDate()>= firstDate){
+            lowerBoundIncomes = i;
+            break;
+        }
+    }
+   for(int i = incomesSize-1;i>=0;i--){
+        if(incomes[i].getDate()<=secondDate){
+            upperBoundIncomes = i;
+            break;
+        }
+   }
+
+    int Lp = 1;
+    double sumOfIncomes = 0;
+    cout<<endl<<"------INCOMES--------"<<endl;
+    cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
+
+    for(int i = lowerBoundIncomes;i<=upperBoundIncomes;i++){
+        sumOfIncomes += incomes[i].getAmount();
+        cout<<setw(5)<<left<< Lp<<setw(12)<<left<< incomes[i].getDate()<<setw(20)<<left<<incomes[i].getItem()<<setw(8)<<left<<incomes[i].getAmount()<<endl;
+        Lp++;
+    }
+
+    int expensesSize = expenses.size();
+    int lowerBoundExpenses = 0;
+    int upperBoundExpenses = 0;
+
+    for(int i=0; i<expensesSize;i++){
+        if(expenses[i].getDate()>= firstDate){
+            lowerBoundExpenses = i;
+            break;
+        }
+    }
+   for(int i = expensesSize-1;i>=0;i--){
+        if(expenses[i].getDate()<=secondDate){
+            upperBoundExpenses = i;
+            break;
+        }
+   }
+
+    double sumOfExpenses = 0;
+    cout<<endl<<"------EXPENSES--------"<<endl;
+    cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
+    Lp = 1;
+    for(int i = lowerBoundExpenses;i<=upperBoundExpenses;i++){
+        sumOfExpenses += expenses[i].getAmount();
+        cout<<setw(5)<<left<< Lp<<setw(12)<<left<< expenses[i].getDate()<<setw(20)<<left<<expenses[i].getItem()<<setw(8)<<left<<expenses[i].getAmount()<<endl;
+        Lp++;
+    }
+    cout<<endl<<"--------------------------------"<<endl;
+    cout<< setw(37)<<left<<"Sum of incomes: " <<sumOfIncomes<<endl;
+    cout<< setw(37)<<left<< "Sum of expenses: " << sumOfExpenses<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<< setw(37)<<left<<"Saldo equal: " <<(sumOfIncomes-sumOfExpenses)<<endl<<endl;
+
+    system("pause");
+    system("cls");
+}
 
 void TransactionsManager::showBalanceCurrentMonth(){
      string currentMonth =  getTodayDate().substr(0,7);
@@ -96,9 +185,9 @@ void TransactionsManager::showBalance(string givenMonth){
 
     for(Transaction income : incomes){
        if(income.getDate().rfind(givenMonth,0) == 0){
-            sumOfIncomes += income.getAmount();
-            cout<<setw(5)<<left<< Lp<<setw(12)<<left<< income.getDate()<<setw(20)<<left<<income.getItem()<<setw(8)<<left<<income.getAmount()<<endl;
-             Lp++;
+        sumOfIncomes += income.getAmount();
+        cout<<setw(5)<<left<< Lp<<setw(12)<<left<< income.getDate()<<setw(20)<<left<<income.getItem()<<setw(8)<<left<<income.getAmount()<<endl;
+         Lp++;
         }
     }
 
@@ -151,7 +240,6 @@ string TransactionsManager::getPreviousMonth(){
         return previousMonth;
     }
 }
-
 
 bool TransactionsManager::checkDate(string inputDate){
     int lengthOfString = inputDate.length();
