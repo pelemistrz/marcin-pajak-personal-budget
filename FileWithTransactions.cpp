@@ -38,7 +38,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
             xml.OutOfElem();
         }
     }
-    idLastTransaction = number;
+    this->idLastTransaction = number;
     return transactions;
 }
 

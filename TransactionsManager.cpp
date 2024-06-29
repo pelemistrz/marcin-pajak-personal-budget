@@ -6,9 +6,9 @@ void TransactionsManager::addIncome(){
 
 void TransactionsManager::addExpense(){
     addTransaction(fileWithExpenses, "expense");
-
 }
-void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, string whichTransaction){
+
+void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, string whichKindOfTransaction){
     string item;
     string inputDate;
     string date;
@@ -31,7 +31,7 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
           {
             date = inputDate;
           } else {
-              cout<<"Please provide date in format \"yyyy-mm-dd\" when year is after 2001"<<endl;
+              cout<<endl<<"Please try again"<<endl;
               return;
           }
           break;
@@ -42,7 +42,7 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     }
 
 
-    cout <<"Please enter description of the " + whichTransaction +": ";
+    cout <<"Please enter description of the " + whichKindOfTransaction +": ";
     cin.sync();
     getline(cin,item,'\n');
     cout<<endl<<"Please enter amount in format of double \"xx.xx\": ";
@@ -58,14 +58,14 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     transaction.setItem(item);
     transaction.setAmount(doubleAmount);
 
-    if(whichTransaction=="income"){
+    if(whichKindOfTransaction=="income"){
         incomes.push_back(transaction);
     } else {
         expenses.push_back(transaction);
     }
     whichFileToSave.addTransactionToTheFile(transaction);
 
-    cout<<endl<< "Your " +whichTransaction +" has been added. "<<endl ;
+    cout<<endl<< "Your " +whichKindOfTransaction +" has been added. "<<endl ;
     system("pause");
     system("cls");
     }
@@ -75,6 +75,7 @@ void TransactionsManager::showBalanceCurrentMonth(){
      string currentMonth =  getTodayDate().substr(0,7);
      showBalance(currentMonth);
 }
+
 void TransactionsManager::showBalancePreviousMonth(){
     string previousMonth = getPreviousMonth();
     showBalance(previousMonth);
@@ -133,6 +134,7 @@ string TransactionsManager::getTodayDate(){
     strftime(todayDate,30,"%Y-%m-%d",timeinfo);
     return todayDate;
 }
+
 string TransactionsManager::getPreviousMonth(){
     string todayDate = getTodayDate();
     string previousMonth = "";
@@ -148,19 +150,56 @@ string TransactionsManager::getPreviousMonth(){
         previousMonth = to_string(year)+"-"+to_string(month-1);
         return previousMonth;
     }
-
 }
 
 
-
 bool TransactionsManager::checkDate(string inputDate){
+    int lengthOfString = inputDate.length();
+    if(lengthOfString !=10){
+        cout<<endl<<"The given date is wrong length"<<endl;
+        return false;
+    }
+
     int year = stoi(inputDate.substr(0,4));
     int month = stoi(inputDate.substr(5,2));
     int day = stoi(inputDate.substr(8,2));
 
+    int currentYear = stoi(getTodayDate().substr(0,4));
+    int currentMonth = stoi(getTodayDate().substr(5,2));
+    int currentDay = stoi(getTodayDate().substr(8,2));
 
+    if((year<2001) || (year>currentYear)){
+        cout<<endl<<"The year is less than 2001 or more than current year"<<endl;
+        return false;
+    }
+    if((year==currentYear && month >currentMonth) || (year==currentYear && month == currentMonth && day > currentDay) ){
+        cout<<endl<<"The date has to be before current date."<<endl;
+        return false;
+    }
+
+    if(month>12){
+        cout<<endl<<"The given month is more than 12"<<endl;
+        return false;
+    }
+    if(day>getNumberOfDays(month,year)){
+        cout<<endl<<"The numbers of days is more than have given month"<<endl;
+        return false;
+    }
     return true;
+}
 
-
+int TransactionsManager::getNumberOfDays(int month, int year)
+{
+    if (month == 2) {
+        if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
+            return 29;
+        else
+            return 28;
+    }
+    else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8
+        || month == 10 || month == 12)
+        return 31;
+    else
+        return 30;
 }
 

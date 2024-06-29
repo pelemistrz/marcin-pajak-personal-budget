@@ -53,8 +53,7 @@ int main()
             cout<<"2. Add new expense."<<endl;
             cout<<"3. Show balance current month."<<endl;
             cout<<"4. Show balance previous month"<<endl;
-            cout<<"5. Delete contact."<<endl;
-            cout<<"6. Edit contact."<<endl;
+            cout<<"5. Show balance in given period"<<endl;
             cout<<"7. Change password."<<endl;
             cout<<"8. Log out."<<endl;
             cout<<"9. Exit."<<endl;
@@ -96,30 +95,6 @@ int main()
     }
     return 0;
 }
-
-string getTodayDate(){
-    time_t rawtime;
-    tm* timeinfo;
-    char todayDate [30];
-
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-
-    strftime(todayDate,30,"%Y%m%d",timeinfo);
-    return todayDate;
-}
-
-
-//
-//bool TransactionsManager::checkDate(string date){
-//    int year;
-//    int month;
-//    int day;
-//
-//
-//
-//
-//}
 
  int mains(){
      string date = "2021-04-03";
