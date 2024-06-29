@@ -7,6 +7,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
     CMarkup xml;
     Transaction transaction;
     vector<Transaction> transactions;
+    int number = 0;
 
     bool fileExists = xml.Load(NAME_OF_THE_FILE);
     if(fileExists)
@@ -18,6 +19,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
             xml.IntoElem();
             xml.FindElem("TransactionId");
             int transactionId = atoi(MCD_2PCSZ(xml.GetData()));
+            number = transactionId;
             transaction.setTransactonId(transactionId);
             xml.FindElem("IdUserWhoCreatedTransaction");
             int idUserWhoCreatedTransaction = atoi(MCD_2PCSZ(xml.GetData()));
@@ -36,6 +38,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
             xml.OutOfElem();
         }
     }
+    idLastTransaction = number;
     return transactions;
 }
 
@@ -60,4 +63,9 @@ void FileWithTransactions::addTransactionToTheFile(Transaction transaction) {
     amount = to_string(transaction.getAmount());
     xml.AddElem("Amount",amount);
     xml.Save(NAME_OF_THE_FILE);
+    this->idLastTransaction += 1;
+}
+
+int FileWithTransactions::getIdLastTransaction(){
+    return idLastTransaction;
 }

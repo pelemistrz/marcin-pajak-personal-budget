@@ -25,8 +25,11 @@ class TransactionsManager{
     FileWithTransactions fileWithExpenses;
 
     string getTodayDate();
+    string getPreviousMonth();
+
     void addTransaction(FileWithTransactions whichFileToSave, string wichTransactions);
     void showBalance(string date);
+    bool checkDate(string date);
 
 public:
      TransactionsManager(string nameOfFileWithIncomes,string nameOfFileWithExpenses, int idLoggedUser) : fileWithIncomes(nameOfFileWithIncomes), fileWithExpenses(nameOfFileWithExpenses) ,ID_LOGGED_USER(idLoggedUser){

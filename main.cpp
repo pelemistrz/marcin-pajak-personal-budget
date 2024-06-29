@@ -52,7 +52,7 @@ int main()
             cout<<"1. Add new income."<<endl;
             cout<<"2. Add new expense."<<endl;
             cout<<"3. Show balance current month."<<endl;
-            cout<<"4. giberish"<<endl;
+            cout<<"4. Show balance previous month"<<endl;
             cout<<"5. Delete contact."<<endl;
             cout<<"6. Edit contact."<<endl;
             cout<<"7. Change password."<<endl;
@@ -109,15 +109,24 @@ string getTodayDate(){
     return todayDate;
 }
 
-string getPreviousMonth(){
 
-
-}
-
+//
+//bool TransactionsManager::checkDate(string date){
+//    int year;
+//    int month;
+//    int day;
+//
+//
+//
+//
+//}
 
  int mains(){
-    string currentMonth = getTodayDate().substr(0,6);
-     cout<<currentMonth;
+     string date = "2021-04-03";
+    int year = stoi(date.substr(0,4));
+    int month = stoi(date.substr(5,2));
+    int day = stoi(date.substr(8,2));
+    cout<<year<<endl<<month<<endl<<day;
     return 0;
 }
 
