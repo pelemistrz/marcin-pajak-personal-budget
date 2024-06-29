@@ -45,6 +45,7 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     cout <<"Please enter description of the " + whichKindOfTransaction +": ";
     cin.sync();
     getline(cin,item,'\n');
+
     cout<<endl<<"Please enter amount in format of double \"xx.xx\": ";
     cin>> amount;
     replace(amount.begin(), amount.end(), ',', '.');
@@ -98,8 +99,8 @@ void TransactionsManager::showBalanceInGivenPeriod(){
         } );
 
     int incomesSize = incomes.size();
-    int lowerBoundIncomes = 0;
-    int upperBoundIncomes = 0;
+    int lowerBoundIncomes = -1;
+    int upperBoundIncomes = -1;
     for(int i=0; i<incomesSize;i++){
         if(incomes[i].getDate()>= firstDate){
             lowerBoundIncomes = i;
@@ -118,15 +119,18 @@ void TransactionsManager::showBalanceInGivenPeriod(){
     cout<<endl<<"------INCOMES--------"<<endl;
     cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
 
-    for(int i = lowerBoundIncomes;i<=upperBoundIncomes;i++){
+    if(lowerBoundIncomes != -1 && upperBoundIncomes!=-1){
+        for(int i = lowerBoundIncomes;i<=upperBoundIncomes;i++){
         sumOfIncomes += incomes[i].getAmount();
         cout<<setw(5)<<left<< Lp<<setw(12)<<left<< incomes[i].getDate()<<setw(20)<<left<<incomes[i].getItem()<<setw(8)<<left<<incomes[i].getAmount()<<endl;
         Lp++;
+        }
     }
 
+
     int expensesSize = expenses.size();
-    int lowerBoundExpenses = 0;
-    int upperBoundExpenses = 0;
+    int lowerBoundExpenses = -1;
+    int upperBoundExpenses = -1;
 
     for(int i=0; i<expensesSize;i++){
         if(expenses[i].getDate()>= firstDate){
@@ -145,11 +149,14 @@ void TransactionsManager::showBalanceInGivenPeriod(){
     cout<<endl<<"------EXPENSES--------"<<endl;
     cout << setw(5)<<left<<"Lp."<<setw(12)<<left<< "Date"<<setw(20)<<left<<"Description"<<setw(8)<<left<<"Amount"<<endl;
     Lp = 1;
-    for(int i = lowerBoundExpenses;i<=upperBoundExpenses;i++){
+    if(lowerBoundExpenses !=-1&&upperBoundExpenses !=-1 ){
+        for(int i = lowerBoundExpenses;i<=upperBoundExpenses;i++){
         sumOfExpenses += expenses[i].getAmount();
         cout<<setw(5)<<left<< Lp<<setw(12)<<left<< expenses[i].getDate()<<setw(20)<<left<<expenses[i].getItem()<<setw(8)<<left<<expenses[i].getAmount()<<endl;
         Lp++;
+        }
     }
+
     cout<<endl<<"--------------------------------"<<endl;
     cout<< setw(37)<<left<<"Sum of incomes: " <<sumOfIncomes<<endl;
     cout<< setw(37)<<left<< "Sum of expenses: " << sumOfExpenses<<endl;

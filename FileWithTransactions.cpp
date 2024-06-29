@@ -17,14 +17,16 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
         while(xml.FindElem("Transaction"))
         {
             xml.IntoElem();
+            xml.FindElem("IdUserWhoCreatedTransaction");
+            int idUserWhoCreatedTransaction = atoi(MCD_2PCSZ(xml.GetData()));
+            if(idUserWhoCreatedTransaction==idLoggedUser){
+            transaction.setIdUserWhoCreatedTransaction(idUserWhoCreatedTransaction);
             xml.FindElem("TransactionId");
             int transactionId = atoi(MCD_2PCSZ(xml.GetData()));
             number = transactionId;
             transaction.setTransactonId(transactionId);
 
-            xml.FindElem("IdUserWhoCreatedTransaction");
-            int idUserWhoCreatedTransaction = atoi(MCD_2PCSZ(xml.GetData()));
-            transaction.setIdUserWhoCreatedTransaction(idUserWhoCreatedTransaction);
+
 
             xml.FindElem("Date");
             string date = xml.GetData();
@@ -38,7 +40,7 @@ vector<Transaction> FileWithTransactions::loadTransactionsFromFile(int idLoggedU
             double amount = atof(MCD_2PCSZ(xml.GetData()));
             transaction.setAmount(amount);
             transactions.push_back(transaction);
-
+            }
             xml.OutOfElem();
         }
     }
