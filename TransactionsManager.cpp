@@ -47,8 +47,8 @@ void TransactionsManager::addTransaction(FileWithTransactions whichFileToSave, s
     getline(cin,item,'\n');
     cout<<endl<<"Please enter amount in format of double \"xx.xx\": ";
     cin>> amount;
+    replace(amount.begin(), amount.end(), ',', '.');
     doubleAmount = stod(amount);
-    cout<<endl<<doubleAmount;
 
     idTransaction = whichFileToSave.getIdLastTransaction()+1;
     Transaction transaction;
